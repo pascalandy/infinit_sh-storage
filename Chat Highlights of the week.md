@@ -1,5 +1,6 @@
 ### Slack highlights
 
+```
 Jan 16th
 
 chris [8:56 AM]  
@@ -43,9 +44,11 @@ xored UTP:
     1729ms for 5.2 MB (3.0 MB/sec)
   Download:
     590ms for 5.2 MB (8.9 MB/sec)```
+```
 
 ### Use infinit-doctor correctly …
 
+```
 pascalandy [11:11 AM] 
 Holly shit!! I was not doing the test properly!!
     
@@ -61,9 +64,11 @@ chris [9:44 AM]
 `--publish` is an alias for `--push-endpoints --fetch-endpoints` or `--push --fetch`. only storage nodes need to push their endpoints to the hub so that other nodes connect to them. all nodes after the first node should fetch
 
 it's safe to just use `--publish` for all the nodes though
+```
 
 ### Capacity
 
+```
 pascalandy [9:49 AM] 
 about --capacity ...
 I tought we had to define this
@@ -75,9 +80,11 @@ chris [11:01 AM]
 basically we store all the data in a DHT. the first time you run the volume (on any node), we want to write a root block that contains the information about the `/` directory. there's no sure way to check that the block hasn't been created before because you might not be connected to the storage node that has it or for another reason
 
 so we use that flag to ensure that you only write the root block once
+```
 
 ### --publish means ?
- 
+
+``` 
 as i said before, `--publish` is really just an alias for `--push --fetch`. in this case the push will be ignored
 
 pascalandy [4:24 PM] 
@@ -107,17 +114,17 @@ While I was copying file from mysql, I saw those issues. Can we consider them no
 Node 2:
 I did test to copy-paste a folder and double check it’s size:
 
-```$ du -sh /root/mnt/infinit/dev-h/is-workdir/mysql
+$ du -sh /root/mnt/infinit/dev-h/is-workdir/mysql
 > 875M 
 
 $ du -sh /root/mnt/infinit/dev-h/is-workdir/mysqltmp
 > 875M    
-```
+
  
 I see the same result on Node1 and Node 3. At this point I assume that everything works as expected.
 
 But, when I do:
-```$ infinit-doctor --all
+$ infinit-doctor --all
 
 CONFIGURATION INTEGRITY:
 [OK] Storage resources
@@ -142,14 +149,16 @@ CONNECTIVITY:
 [ERROR] UPNP:
   Reason: UPNP device discovery failure: 0
 [OK] Protocols
-```
+
 
 I get this [ERROR] UPNP:
 
 So I’m not so confident now.
+```
 
 ### message errors
 
+```
 chris [3:35 AM
 for 1) it's not completely unexpected. kelips uses UDP which can have packet loss
 
@@ -167,8 +176,11 @@ Just to be sure, your consider this a warning ?
 
 chris [7:41 AM] 
 it should be working now. we are looking at adding some form of monitoring but since the system is decentralised it's not that straightforward
+```
 
 ### --async
+
+```
 pascalandy [8:16 AM] 
 Cool.
 I get it. It might be problematic for huge files.
@@ -189,9 +201,11 @@ in general i prefer to not use --async as then i know the changes have taken pla
 
 pascalandy [8:19 AM] 
 Damm Chris …
+```
 
 ### my use case
 
+```
 [8:20]  
 Actually, going back about why I want a tool like Infinit.
 
@@ -212,8 +226,11 @@ Then when this system is rock solid, I’ll have cron synching the share folder 
 
 [8:22]  
 So I’m not sure I can count on Infinit at this point.
+```
 
 ### Replication Factor !!
+
+```
 (default is 1, I think it should be an explicit value)
 
 pascalandy [8:52 AM] 
@@ -225,9 +242,11 @@ I’ll have more than 3 nodes in the future so it sounds great
 chris [8:53 AM] 
 uneven numbers of replication are better
 so yes, 3 would be better
+```
 
 ### What the hell ?
 
+```
 chris [11:51 AM] 
 the syntax is correct
 
@@ -270,14 +289,18 @@ It worked!
 
 chris [12:10 PM] 
 you should stop the script on errors
+```
 
 ### Jan 19th
 
+```
 pascalandy [11:12 PM] 
 Files are synching normally but the infinit.overlay.kelips messages are overwhelming. They take over my systems.
+```
 
 ### Kouncil overlay !!
 
+```
 chris [12:04 PM] 
 afternoon! you can either redirect the messages from stderr or you can try the Kouncil overlay
 **kouncil is designed to be more efficient for smaller clusters**
@@ -295,8 +318,9 @@ tens of nodes
 kelips is designed to handle thousands
 http://iptps03.cs.berkeley.edu/final-papers/kelips.pdf
 we will be changing the default overlay from kelips to kouncil in the next release
+```
 
-### Now
+### Up to now
 
 At this moment I export https://github.com/pascalandy/infinit_sh-storage/commit/6b83b8c2b35ed848cfef8e862f50408424baa236
 
